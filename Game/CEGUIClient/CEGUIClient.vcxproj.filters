@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{ba35df8e-4beb-44e1-874e-9c569bea365e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Client">
+      <UniqueIdentifier>{a0234fd2-81cc-4ad4-9ad4-5170129a183c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GuiSystem">
+      <UniqueIdentifier>{8ecac477-e29e-466a-a075-af6840645ed6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Src\Common.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Game.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\GameWnd.h">
+      <Filter>GuiSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\GameGui.h">
+      <Filter>GuiSystem</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Src\Game.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Entry.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\GameWnd.cpp">
+      <Filter>GuiSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\GameGui.cpp">
+      <Filter>GuiSystem</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
