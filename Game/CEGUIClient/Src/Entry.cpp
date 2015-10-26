@@ -13,6 +13,6 @@ int main( int argc, char** argv )
 	theGame.Run();
 
 	theGame.Release();
-
+	// 退出
 	return 0;
 }
