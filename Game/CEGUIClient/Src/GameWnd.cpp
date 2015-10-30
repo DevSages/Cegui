@@ -1,9 +1,9 @@
 #include "GameWnd.h"
-
+#include <tchar.h>
 
 GameWnd::Input_Handelers GameWnd::s_InputHandlers;
 
-LPCWSTR szClassName = TEXT( "GAME" );
+LPCTSTR szClassName = _TEXT( "GAME" );
 
 
 GameWnd& GameWnd::GetWnd()
@@ -39,11 +39,11 @@ bool GameWnd::InitWnd( UINT uWidth, UINT uHeight, bool bFullScreen )
 	HWND hwnd = NULL;
 	if( bFullScreen )
 	{
-		hwnd = CreateWindow( szClassName, TEXT(""), WS_EX_TOPMOST|WS_VISIBLE|WS_POPUP, 0, 0, uWidth, uHeight, NULL, NULL, wc.hInstance, NULL );
+		hwnd = CreateWindow( szClassName, _TEXT(""), WS_EX_TOPMOST|WS_VISIBLE|WS_POPUP, 0, 0, uWidth, uHeight, NULL, NULL, wc.hInstance, NULL );
 	}
 	else
 	{
-		hwnd = CreateWindow( szClassName, TEXT(""), WS_OVERLAPPEDWINDOW|WS_VISIBLE, 0, 0, uWidth, uHeight, NULL, NULL, wc.hInstance, NULL );
+		hwnd = CreateWindow( szClassName, _TEXT(""), WS_OVERLAPPEDWINDOW|WS_VISIBLE, 0, 0, uWidth, uHeight, NULL, NULL, wc.hInstance, NULL );
 	}
 	
 	if( hwnd == NULL )

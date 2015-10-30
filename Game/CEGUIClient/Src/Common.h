@@ -18,14 +18,15 @@
 #endif
 
 
-const int COMMON_CHAR_BUF_64	=	64;
-const int COMMON_CHAR_BUF_128	=	128;
-const int COMMON_CHAR_BUF_256	=	256;
-const int COMMON_CHAR_BUF_512	=	512;
+#if defined( WIN32 ) && defined( _DEBUG )
+	#ifndef _CONSOLE
+		#pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" )
+	#endif
+#endif
 
 
 
-
+#define SAFE_DELETE( p ) { if( p != NULL ) delete p; p = NULL; }
 
 
 

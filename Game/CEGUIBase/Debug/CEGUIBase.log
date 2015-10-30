@@ -1,0 +1,252 @@
+﻿生成启动时间为 2015/10/27 16:14:11。
+     1>项目“F:\CEGUI\Cegui\Game\CEGUIBase\CEGUIBase.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ID:\DirectX\Include /I.\include\falagard /I.\include\elements /I.\include /I.\include\RendererModules /I../Dependencies/include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_DEPRECATE /D HAVE_CONFIG_H /D PCRE_STATIC /D CEGUIBASE_EXPORTS /D _DEBUG /D DIRECT3D9_GUIRENDERER_EXPORTS /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\RendererModules\CEGUIDirect3D9GeometryBuffer.cpp src\RendererModules\CEGUIDirect3D9RenderTarget.cpp src\RendererModules\CEGUIDirect3D9Renderer.cpp src\RendererModules\CEGUIDirect3D9Texture.cpp src\RendererModules\CEGUIDirect3D9TextureTarget.cpp src\RendererModules\CEGUIDirect3D9ViewportTarget.cpp
+         CEGUIDirect3D9ViewportTarget.cpp
+         CEGUIDirect3D9TextureTarget.cpp
+         CEGUIDirect3D9Texture.cpp
+         CEGUIDirect3D9Renderer.cpp
+         CEGUIDirect3D9RenderTarget.cpp
+         CEGUIDirect3D9GeometryBuffer.cpp
+         正在生成代码...
+       Link:
+         D:\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\CEGUI\Cegui\Game\Bin\Client\CEGUIBase.dll" /INCREMENTAL /NOLOGO /LIBPATH:../Dependencies/lib /LIBPATH:D:\DirectX\Lib\x86 freetype_d.lib pcre_d.lib zlib_d.lib Winmm.lib d3d9.lib d3dx9.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\CEGUI\Cegui\Game\Bin\Client\CEGUIBase.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\CEGUI\Cegui\Game\Bin\Client\CEGUIBase.lib" /MACHINE:X86 /DLL Debug\CEGUIAffector.obj
+         Debug\CEGUIAnimation.obj
+         Debug\CEGUIAnimationInstance.obj
+         Debug\CEGUIAnimationManager.obj
+         Debug\CEGUIAnimation_xmlHandler.obj
+         Debug\CEGUIBase.obj
+         Debug\CEGUIBasicInterpolators.obj
+         Debug\CEGUIBasicRenderedStringParser.obj
+         Debug\CEGUIBiDiVisualMapping.obj
+         Debug\CEGUIBoundSlot.obj
+         Debug\CEGUICentredRenderedString.obj
+         Debug\CEGUIChainedXMLHandler.obj
+         Debug\CEGUIcolour.obj
+         Debug\CEGUIColourRect.obj
+         Debug\CEGUIConfig_xmlHandler.obj
+         Debug\CEGUICoordConverter.obj
+         Debug\CEGUIDataContainer.obj
+         Debug\CEGUIDefaultLogger.obj
+         Debug\CEGUIDefaultRenderedStringParser.obj
+         Debug\CEGUIDefaultResourceProvider.obj
+         Debug\CEGUIDynamicModule.obj
+         Debug\CEGUIEvent.obj
+         Debug\CEGUIEventArgs.obj
+         Debug\CEGUIEventSet.obj
+         Debug\CEGUIEventSignal.obj
+         Debug\CEGUIEventSignalSet.obj
+         Debug\CEGUIExceptions.obj
+         Debug\CEGUIFactoryModule.obj
+         Debug\CEGUIFont.obj
+         Debug\CEGUIFontManager.obj
+         Debug\CEGUIFontProperties.obj
+         Debug\CEGUIFont_xmlHandler.obj
+         Debug\CEGUIFormattedRenderedString.obj
+         Debug\CEGUIFreeTypeFont.obj
+         Debug\CEGUIFribidiVisualMapping.obj
+         Debug\CEGUIGeometryBuffer.obj
+         Debug\CEGUIGlobalEventSet.obj
+         Debug\CEGUIGUILayout_xmlHandler.obj
+         Debug\CEGUIImage.obj
+         Debug\CEGUIImageCodec.obj
+         Debug\CEGUIImageset.obj
+         Debug\CEGUIImagesetManager.obj
+         Debug\CEGUIImageset_xmlHandler.obj
+         Debug\CEGUIJustifiedRenderedString.obj
+         Debug\CEGUIJustifiedRenderedStringWordWrapper.obj
+         Debug\CEGUIKeyFrame.obj
+         Debug\CEGUILeftAlignedRenderedString.obj
+         Debug\CEGUILogger.obj
+         Debug\CEGUIMinibidiVisualMapping.obj
+         Debug\CEGUIMinizipResourceProvider.obj
+         Debug\CEGUIMouseCursor.obj
+         Debug\CEGUINamedXMLResourceManager.obj
+         Debug\CEGUIPCRERegexMatcher.obj
+         Debug\CEGUIPixmapFont.obj
+         Debug\CEGUIProperty.obj
+         Debug\CEGUIPropertyHelper.obj
+         Debug\CEGUIPropertySet.obj
+         Debug\CEGUIRect.obj
+         Debug\CEGUIRenderedString.obj
+         Debug\CEGUIRenderedStringComponent.obj
+         Debug\CEGUIRenderedStringImageComponent.obj
+         Debug\CEGUIRenderedStringTextComponent.obj
+         Debug\CEGUIRenderedStringWidgetComponent.obj
+         Debug\CEGUIRenderEffectManager.obj
+         Debug\CEGUIRenderingRoot.obj
+         Debug\CEGUIRenderingSurface.obj
+         Debug\CEGUIRenderingWindow.obj
+         Debug\CEGUIRenderQueue.obj
+         Debug\CEGUIRightAlignedRenderedString.obj
+         Debug\CEGUIScheme.obj
+         Debug\CEGUISchemeManager.obj
+         Debug\CEGUIScheme_xmlHandler.obj
+         Debug\CEGUIScriptModule.obj
+         Debug\CEGUISize.obj
+         Debug\CEGUIString.obj
+         Debug\CEGUISubscriberSlot.obj
+         Debug\CEGUISystem.obj
+         Debug\CEGUITextUtils.obj
+         Debug\CEGUIWindow.obj
+         Debug\CEGUIWindowFactory.obj
+         Debug\CEGUIWindowFactoryManager.obj
+         Debug\CEGUIWindowManager.obj
+         Debug\CEGUIWindowProperties.obj
+         Debug\CEGUIWindowRenderer.obj
+         Debug\CEGUIWindowRendererManager.obj
+         Debug\CEGUIWindowRendererModule.obj
+         Debug\CEGUIWRFactoryRegisterer.obj
+         Debug\CEGUIXMLAttributes.obj
+         Debug\CEGUIXMLHandler.obj
+         Debug\CEGUIXMLParser.obj
+         Debug\CEGUIXMLSerializer.obj
+         Debug\CEGUIButtonBase.obj
+         Debug\CEGUICheckbox.obj
+         Debug\CEGUICheckboxProperties.obj
+         Debug\CEGUIClippedContainer.obj
+         Debug\CEGUICombobox.obj
+         Debug\CEGUIComboboxProperties.obj
+         Debug\CEGUIComboDropList.obj
+         Debug\CEGUIDragContainer.obj
+         Debug\CEGUIDragContainerProperties.obj
+         Debug\CEGUIEditbox.obj
+         Debug\CEGUIEditboxProperties.obj
+         Debug\CEGUIFrameWindow.obj
+         Debug\CEGUIFrameWindowProperties.obj
+         Debug\CEGUIGridLayoutContainer.obj
+         Debug\CEGUIGridLayoutContainerProperties.obj
+         Debug\CEGUIGroupBox.obj
+         Debug\CEGUIGUISheet.obj
+         Debug\CEGUIHorizontalLayoutContainer.obj
+         Debug\CEGUIItemEntry.obj
+         Debug\CEGUIItemEntryProperties.obj
+         Debug\CEGUIItemListBase.obj
+         Debug\CEGUIItemListBaseProperties.obj
+         Debug\CEGUIItemListbox.obj
+         Debug\CEGUIItemListboxProperties.obj
+         Debug\CEGUILayoutContainer.obj
+         Debug\CEGUIListbox.obj
+         Debug\CEGUIListboxItem.obj
+         Debug\CEGUIListboxProperties.obj
+         Debug\CEGUIListboxTextItem.obj
+         Debug\CEGUIListHeader.obj
+         Debug\CEGUIListHeaderProperties.obj
+         Debug\CEGUIListHeaderSegment.obj
+         Debug\CEGUIListHeaderSegmentProperties.obj
+         Debug\CEGUIMenubar.obj
+         Debug\CEGUIMenuBase.obj
+         Debug\CEGUIMenuBaseProperties.obj
+         Debug\CEGUIMenuItem.obj
+         Debug\CEGUIMenuItemProperties.obj
+         Debug\CEGUIMultiColumnList.obj
+         Debug\CEGUIMultiColumnListProperties.obj
+         Debug\CEGUIMultiLineEditbox.obj
+         Debug\CEGUIMultiLineEditboxProperties.obj
+         Debug\CEGUIPopupMenu.obj
+         Debug\CEGUIPopupMenuProperties.obj
+         Debug\CEGUIProgressBar.obj
+         Debug\CEGUIProgressBarProperties.obj
+         Debug\CEGUIPushButton.obj
+         Debug\CEGUIRadioButton.obj
+         Debug\CEGUIRadioButtonProperties.obj
+         Debug\CEGUIScrollablePane.obj
+         Debug\CEGUIScrollablePaneProperties.obj
+         Debug\CEGUIScrollbar.obj
+         Debug\CEGUIScrollbarProperties.obj
+         Debug\CEGUIScrolledContainer.obj
+         Debug\CEGUIScrolledContainerProperties.obj
+         Debug\CEGUIScrolledItemListBase.obj
+         Debug\CEGUIScrolledItemListBaseProperties.obj
+         Debug\CEGUISequentialLayoutContainer.obj
+         Debug\CEGUISlider.obj
+         Debug\CEGUISliderProperties.obj
+         Debug\CEGUISpinner.obj
+         Debug\CEGUISpinnerProperties.obj
+         Debug\CEGUITabButton.obj
+         Debug\CEGUITabControl.obj
+         Debug\CEGUITabControlProperties.obj
+         Debug\CEGUIThumb.obj
+         Debug\CEGUIThumbProperties.obj
+         Debug\CEGUITitlebar.obj
+         Debug\CEGUITitlebarProperties.obj
+         Debug\CEGUITooltip.obj
+         Debug\CEGUITooltipProperties.obj
+         Debug\CEGUITree.obj
+         Debug\CEGUITreeItem.obj
+         Debug\CEGUITreeProperties.obj
+         Debug\CEGUIVerticalLayoutContainer.obj
+         Debug\CEGUIFalagard_xmlHandler.obj
+         Debug\CEGUIFalComponentBase.obj
+         Debug\CEGUIFalDimensions.obj
+         Debug\CEGUIFalFrameComponent.obj
+         Debug\CEGUIFalImageryComponent.obj
+         Debug\CEGUIFalImagerySection.obj
+         Debug\CEGUIFalLayerSpecification.obj
+         Debug\CEGUIFalNamedArea.obj
+         Debug\CEGUIFalPropertyDefinition.obj
+         Debug\CEGUIFalPropertyDefinitionBase.obj
+         Debug\CEGUIFalPropertyInitialiser.obj
+         Debug\CEGUIFalPropertyLinkDefinition.obj
+         Debug\CEGUIFalSectionSpecification.obj
+         Debug\CEGUIFalStateImagery.obj
+         Debug\CEGUIFalTextComponent.obj
+         Debug\CEGUIFalWidgetComponent.obj
+         Debug\CEGUIFalWidgetLookFeel.obj
+         Debug\CEGUIFalWidgetLookManager.obj
+         Debug\CEGUIFalXMLEnumHelper.obj
+         Debug\ioapi.obj
+         Debug\iowin32.obj
+         Debug\unzip.obj
+         Debug\CEGUIDirect3D9GeometryBuffer.obj
+         Debug\CEGUIDirect3D9Renderer.obj
+         Debug\CEGUIDirect3D9RenderTarget.obj
+         Debug\CEGUIDirect3D9Texture.obj
+         Debug\CEGUIDirect3D9TextureTarget.obj
+         Debug\CEGUIDirect3D9ViewportTarget.obj
+         Debug\Direct3D9Init.obj
+            正在创建库 F:\CEGUI\Cegui\Game\Bin\Client\CEGUIBase.lib 和对象 F:\CEGUI\Cegui\Game\Bin\Client\CEGUIBase.exp
+     1>freetype_d.lib(ftsystem.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“freetype_d.lib(ftsystem.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype_d.lib(ftinit.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“freetype_d.lib(ftinit.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype_d.lib(ftdebug.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“freetype_d.lib(ftdebug.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype_d.lib(ftbase.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“freetype_d.lib(ftbase.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype_d.lib(bdf.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“freetype_d.lib(bdf.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype_d.lib(cff.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“freetype_d.lib(cff.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype_d.lib(type1cid.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“freetype_d.lib(type1cid.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype_d.lib(pcf.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“freetype_d.lib(pcf.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype_d.lib(pfr.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“freetype_d.lib(pfr.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype_d.lib(sfnt.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“freetype_d.lib(sfnt.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype_d.lib(truetype.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“freetype_d.lib(truetype.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype_d.lib(type1.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“freetype_d.lib(type1.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype_d.lib(type42.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“freetype_d.lib(type42.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype_d.lib(winfnt.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“freetype_d.lib(winfnt.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype_d.lib(raster.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“freetype_d.lib(raster.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype_d.lib(smooth.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“freetype_d.lib(smooth.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype_d.lib(autofit.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“freetype_d.lib(autofit.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype_d.lib(ftgzip.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“freetype_d.lib(ftgzip.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype_d.lib(ftlzw.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“freetype_d.lib(ftlzw.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype_d.lib(psaux.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“freetype_d.lib(psaux.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype_d.lib(pshinter.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“freetype_d.lib(pshinter.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype_d.lib(psnames.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“freetype_d.lib(psnames.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>pcre_d.lib(pcre_chartables.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“pcre_d.lib(pcre_chartables.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>pcre_d.lib(pcre_compile.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“pcre_d.lib(pcre_compile.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>pcre_d.lib(pcre_exec.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“pcre_d.lib(pcre_exec.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>pcre_d.lib(pcre_globals.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“pcre_d.lib(pcre_globals.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>pcre_d.lib(pcre_newline.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“pcre_d.lib(pcre_newline.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>pcre_d.lib(pcre_ord2utf8.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“pcre_d.lib(pcre_ord2utf8.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>pcre_d.lib(pcre_tables.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“pcre_d.lib(pcre_tables.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>pcre_d.lib(pcre_try_flipped.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“pcre_d.lib(pcre_try_flipped.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>pcre_d.lib(pcre_valid_utf8.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“pcre_d.lib(pcre_valid_utf8.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>pcre_d.lib(pcre_xclass.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“pcre_d.lib(pcre_xclass.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>zlib_d.lib(adler32.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“zlib_d.lib(adler32.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>zlib_d.lib(crc32.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“zlib_d.lib(crc32.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>zlib_d.lib(inffast.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“zlib_d.lib(inffast.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>zlib_d.lib(inflate.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“zlib_d.lib(inflate.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>zlib_d.lib(inftrees.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“zlib_d.lib(inftrees.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>zlib_d.lib(zutil.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“zlib_d.lib(zutil.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+         CEGUIBase.vcxproj -> F:\CEGUI\Cegui\Game\Bin\Client\CEGUIBase.dll
+     1>已完成生成项目“F:\CEGUI\Cegui\Game\CEGUIBase\CEGUIBase.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:41.08

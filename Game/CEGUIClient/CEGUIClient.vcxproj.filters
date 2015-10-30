@@ -14,6 +14,12 @@
     <Filter Include="GuiSystem">
       <UniqueIdentifier>{8ecac477-e29e-466a-a075-af6840645ed6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameTools">
+      <UniqueIdentifier>{60c24d76-6d49-4987-939f-cf74e2ba5bee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileSystem">
+      <UniqueIdentifier>{d7d41fce-4ec4-4449-92f9-6c999ee8dac9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Common.h">
@@ -28,12 +34,24 @@
     <ClInclude Include="Src\GameGui.h">
       <Filter>GuiSystem</Filter>
     </ClInclude>
+    <ClInclude Include="Src\ConstDef.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\GameTools\ErrorMsg.h">
+      <Filter>GameTools</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\GameTools\PathMngr.h">
+      <Filter>GameTools</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\GameTools\StringCVTools.h">
+      <Filter>GameTools</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FileSystem\IniFile.h">
+      <Filter>FileSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Game.cpp">
-      <Filter>Client</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Entry.cpp">
       <Filter>Client</Filter>
     </ClCompile>
     <ClCompile Include="Src\GameWnd.cpp">
@@ -41,6 +59,21 @@
     </ClCompile>
     <ClCompile Include="Src\GameGui.cpp">
       <Filter>GuiSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\GameEntry.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\GameTools\PathMngr.cpp">
+      <Filter>GameTools</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\GameTools\ErrorMsg.cpp">
+      <Filter>GameTools</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\GameTools\StringCVTools.cpp">
+      <Filter>GameTools</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FileSystem\IniFile.cpp">
+      <Filter>FileSystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,0 +1,20 @@
+﻿生成启动时间为 2015/10/27 16:16:23。
+     1>项目“F:\CEGUI\Cegui\Game\CEGUIExpatParser\CEGUIExpatParser.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I../CEGUIBase/include /I../Dependencies/include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_DEPRECATE /D HAVE_CONFIG_H /D CEGUIEXPATPARSER_EXPORTS /D XML_STATIC /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ExpatParser\CEGUIExpatParser.cpp ExpatParser\CEGUIExpatParserModule.cpp
+         CEGUIExpatParserModule.cpp
+         CEGUIExpatParser.cpp
+         正在生成代码...
+       Link:
+         D:\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\CEGUI\Cegui\Game\Bin\Client\CEGUIExpatParser.dll" /INCREMENTAL /NOLOGO /LIBPATH:../Bin/Client /LIBPATH:../Dependencies/lib CEGUIBase.lib expat_d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\CEGUI\Cegui\Game\Bin\Client\CEGUIExpatParser.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\CEGUI\Cegui\Game\Bin\Client\CEGUIExpatParser.lib" /MACHINE:X86 /DLL Debug\CEGUIExpatParser.obj
+         Debug\CEGUIExpatParserModule.obj
+            正在创建库 F:\CEGUI\Cegui\Game\Bin\Client\CEGUIExpatParser.lib 和对象 F:\CEGUI\Cegui\Game\Bin\Client\CEGUIExpatParser.exp
+     1>expat_d.lib(xmlparse.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“expat_d.lib(xmlparse.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>expat_d.lib(xmlrole.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“expat_d.lib(xmlrole.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>expat_d.lib(xmltok.obj) : warning LNK4099: 未找到 PDB“vc100.pdb”(使用“expat_d.lib(xmltok.obj)”或在“F:\CEGUI\Cegui\Game\Bin\Client\vc100.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+         CEGUIExpatParser.vcxproj -> F:\CEGUI\Cegui\Game\Bin\Client\CEGUIExpatParser.dll
+     1>已完成生成项目“F:\CEGUI\Cegui\Game\CEGUIExpatParser\CEGUIExpatParser.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:03.17

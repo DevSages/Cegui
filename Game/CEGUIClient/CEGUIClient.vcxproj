@@ -54,7 +54,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../CEGUIBase/include;../CEGUIBase/include/RendererModules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../CEGUIBase/include;../CEGUIBase/include/RendererModules;.\Src\GameTools;.\Src;.\Src\FileSystem;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -83,14 +83,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Src\Common.h" />
+    <ClInclude Include="Src\ConstDef.h" />
+    <ClInclude Include="Src\FileSystem\IniFile.h" />
     <ClInclude Include="Src\Game.h" />
     <ClInclude Include="Src\GameGui.h" />
+    <ClInclude Include="Src\GameTools\ErrorMsg.h" />
+    <ClInclude Include="Src\GameTools\PathMngr.h" />
+    <ClInclude Include="Src\GameTools\StringCVTools.h" />
     <ClInclude Include="Src\GameWnd.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\FileSystem\IniFile.cpp" />
     <ClCompile Include="Src\Game.cpp" />
     <ClCompile Include="Src\GameGui.cpp" />
-    <ClCompile Include="Src\Entry.cpp" />
+    <ClCompile Include="Src\GameEntry.cpp" />
+    <ClCompile Include="Src\GameTools\ErrorMsg.cpp" />
+    <ClCompile Include="Src\GameTools\PathMngr.cpp" />
+    <ClCompile Include="Src\GameTools\StringCVTools.cpp" />
     <ClCompile Include="Src\GameWnd.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

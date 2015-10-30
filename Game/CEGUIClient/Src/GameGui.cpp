@@ -1,8 +1,24 @@
 #include "GameGui.h"
+#include "PathMngr.h"
+#include "StringCVTools.h"
+#include "IniFile.h"
+#include <iostream>
+using namespace std;
 
+
+
+GameGui::GameGui():
+m_Device( NULL ),
+m_Renderer( NULL ),
+m_GUISystem( NULL )
+{
+
+}
 
 bool GameGui::Init()
 {
+	IniFile ini( "Config.ini" );
+
 	GameWnd& wnd = GameWnd::GetWnd();
 	if( !wnd.InitWnd( 800, 600, false ) )
 		return false;
@@ -38,8 +54,6 @@ bool GameGui::Init()
 
 void GameGui::HandleInput( UINT uMsg, WPARAM wParam, LPARAM lParam )
 {
-	return;
-
 	switch( uMsg )
 	{
 	case WM_CHAR:
@@ -114,12 +128,10 @@ void GameGui::Render( float timeDelta )
 {
 	if( m_GUISystem != NULL )
 	{
-		m_GUISystem->renderGUI();
-
 		m_GUISystem->injectTimePulse( timeDelta );
 		if( !checkDeviceLost() )
 		{
-			
+			m_GUISystem->renderGUI();
 		}
 	}
 }
@@ -135,25 +147,25 @@ void GameGui::InitialiseResourceGroupDirectories()
 {
 	CEGUI::DefaultResourceProvider* rp = static_cast<CEGUI::DefaultResourceProvider*>(CEGUI::System::getSingleton().getResourceProvider());
 
-	const char* dataPathPrefix = GetDataPathPrefix();
-	char resourcePath[PATH_MAX];
+	const TCHAR* szDataPathPrefix = PathMngr::GetSingleton().GetResourcePath();
+	TCHAR resourcePath[PATH_MAX];
 
-	sprintf_s(resourcePath, "%s/%s", dataPathPrefix, "schemes/" );
-	rp->setResourceGroupDirectory("schemes", resourcePath);
-	sprintf_s(resourcePath, "%s/%s", dataPathPrefix, "imagesets/");
-	rp->setResourceGroupDirectory("imagesets", resourcePath);
-	sprintf_s(resourcePath, "%s/%s", dataPathPrefix, "fonts/");
-	rp->setResourceGroupDirectory("fonts", resourcePath);
-	sprintf_s(resourcePath, "%s/%s", dataPathPrefix, "layouts/");
-	rp->setResourceGroupDirectory("layouts", resourcePath);
-	sprintf_s(resourcePath, "%s/%s", dataPathPrefix, "looknfeel/");
-	rp->setResourceGroupDirectory("looknfeels", resourcePath);
-	sprintf_s(resourcePath, "%s/%s", dataPathPrefix, "lua_scripts/");
-	rp->setResourceGroupDirectory("lua_scripts", resourcePath);
-	sprintf_s(resourcePath, "%s/%s", dataPathPrefix, "xml_schemas/");
-	rp->setResourceGroupDirectory("schemas", resourcePath);   
-	sprintf_s(resourcePath, "%s/%s", dataPathPrefix, "animations/");
-	rp->setResourceGroupDirectory("animations", resourcePath); 
+	_stprintf_s(resourcePath, _TEXT("%s/%s"), szDataPathPrefix, _TEXT("schemes/"));
+	rp->setResourceGroupDirectory("schemes", UnicodeToANSI( resourcePath ));
+	_stprintf_s(resourcePath, _TEXT("%s/%s"), szDataPathPrefix, _TEXT("imagesets/"));
+	rp->setResourceGroupDirectory("imagesets", UnicodeToANSI( resourcePath ));
+	_stprintf_s(resourcePath, _TEXT("%s/%s"), szDataPathPrefix, _TEXT("fonts/"));
+	rp->setResourceGroupDirectory("fonts", UnicodeToANSI( resourcePath ));
+	_stprintf_s(resourcePath, _TEXT("%s/%s"), szDataPathPrefix, _TEXT("layouts/"));
+	rp->setResourceGroupDirectory("layouts", UnicodeToANSI( resourcePath ));
+	_stprintf_s(resourcePath, _TEXT("%s/%s"), szDataPathPrefix, _TEXT("looknfeel/"));
+	rp->setResourceGroupDirectory("looknfeels", UnicodeToANSI( resourcePath ));
+	_stprintf_s(resourcePath, _TEXT("%s/%s"), szDataPathPrefix, _TEXT("lua_scripts/"));
+	rp->setResourceGroupDirectory("lua_scripts", UnicodeToANSI( resourcePath ));
+	_stprintf_s(resourcePath, _TEXT("%s/%s"), szDataPathPrefix, _TEXT("xml_schemas/"));
+	rp->setResourceGroupDirectory("schemas", UnicodeToANSI( resourcePath ));
+	_stprintf_s(resourcePath, _TEXT("%s/%s"), szDataPathPrefix, _TEXT("animations/"));
+	rp->setResourceGroupDirectory("animations", UnicodeToANSI( resourcePath )); 
 }
 
 void GameGui::InitialiseDefaultResourceGroups()
