@@ -1,7 +1,6 @@
 #include "ErrorMsg.h"
 #include "ConstDef.h"
 #include "Common.h"
-#include <stdarg.h>
 #include <Windows.h>
 
 

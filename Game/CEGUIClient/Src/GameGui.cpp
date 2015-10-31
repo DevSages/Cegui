@@ -18,6 +18,7 @@ m_GUISystem( NULL )
 bool GameGui::Init()
 {
 	IniFile ini( "Config.ini" );
+	ini.WriteInteger( "windows", "fsgg", 1000 );
 
 	GameWnd& wnd = GameWnd::GetWnd();
 	if( !wnd.InitWnd( 800, 600, false ) )
