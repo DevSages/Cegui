@@ -1,23 +1,28 @@
 #include "IniFile.h"
 #include "PathMngr.h"
-#include "ErrorMsg.h"
 #include <assert.h>
+#include "FileHandler.h"
+#include "IniFileHandler.h"
 
 
-#define Npos std::string::npos
-#define Size_Type std::string::size_type
 
-
-IniFile::IniFile():
-	m_pFile( NULL )
+IniFile::IniFile()
 {
 	Reset();
 }
 
-IniFile::IniFile( const char* szFileName ):
-	m_pFile( NULL )
+IniFile::IniFile( const char* szFileName )
 {
-	assert( LoadFile( szFileName ) );
+	
+	//assert( LoadFile( szFileName ) );
+	std::string strExePath = PathMngr::GetSingleton().GetExePath();
+	sprintf_s( m_szFileName, "%s/%s", strExePath.c_str(), szFileName );
+
+	IniFiles ini( m_szFileName );
+	const char* a  = ini.GetString( "root", "lihuihui" );
+	int b=  1;
+	ini.WriteFloat( "hello", "hello", 3.5 );
+	int asf= 1;
 }
 
 IniFile::~IniFile()
@@ -25,54 +30,83 @@ IniFile::~IniFile()
 	Save();
 }
 
+bool IniFile::OpenFile( const char* szFileName )
+{
+	return LoadFile( szFileName );
+}
+
 bool IniFile::LoadFile( const char* szFileName )
 {
 	Reset();
 
-	std::string strExePath = UnicodeToANSI( PathMngr::GetSingleton().GetExePath() );
+	std::string strExePath = PathMngr::GetSingleton().GetExePath();
 	if( strExePath.empty() )
 	{
-		ErrorMsg( "GetExePath() = NULL!" );
 		return false;
 	}
 	sprintf_s( m_szFileName, "%s/%s", strExePath.c_str(), szFileName );
 
-	errno_t noerr = fopen_s( &m_pFile, m_szFileName, "r" );
-	if( m_pFile == NULL || noerr != 0 )
+	FILE* fp;
+	errno_t noerr = fopen_s( &fp, m_szFileName, "rb" );
+	if( fp == NULL || noerr != 0 )
 	{
-		ErrorMsg( "m_pFile = NULL!" );
 		return false;
 	}
 
-	fseek( m_pFile, 0, SEEK_END );
-	long size = ftell( m_pFile );
-	fseek( m_pFile, 0, SEEK_SET );
+	fseek( fp, ZERO, SEEK_END );
+	int size = ftell( fp );
+	fseek( fp, ZERO, SEEK_SET );
 	if( size == ZERO )
 	{
-		ErrorMsg( "fileSize = ZERO!!" );
-		return false;
+		fclose( fp );
+		return true;
 	}
 
 	m_Lines.clear();
 	int iLineIndex = 0;
-	char szLineBuf[5];
+	char szLineBuf[COMMON_CHAR_BUF_128];
 
-	while( !IsEndOfFile() )
+	while( !IsEndOfFile( fp ) )
 	{
 		char* szContent = NULL;
 		std::string strLine;
 		do
 		{
-			szContent = fgets( szLineBuf, 5, m_pFile );
+			szContent = fgets( szLineBuf, COMMON_CHAR_BUF_128, fp );
 			if( szContent != NULL )
 			{
 				strLine += szContent;
 			}
-		}while( !IsNextLine( szLineBuf[strlen(szLineBuf)-1] ) && !IsEndOfFile() && szContent != NULL );
+		}while( !IsNextLine( szLineBuf[strlen(szLineBuf)-1] ) && !IsEndOfFile( fp ) && szContent != NULL );
 
-		iLineIndex++;
-		ParseLine( strLine.c_str(), iLineIndex );
+		ParseLine( strLine.c_str(), iLineIndex++ );
 	}
+
+	fclose( fp );
+	return true;
+}
+
+bool IniFile::Save()
+{
+	if( m_Lines.empty() )
+		return false;
+
+	FILE* fp;
+	errno_t noerr = fopen_s( &fp, m_szFileName, "wb+" );
+	if( fp == NULL || noerr != 0 )
+	{
+		return false;
+	}
+
+	std::string strText = "";
+	for( LinesIter it = m_Lines.begin(); it != m_Lines.end(); ++it )
+	{
+		strText += it->content;
+	}
+	fwrite( strText.c_str(), strText.length(), 1, fp );
+	fflush( fp );
+	fclose( fp );
+
 	return true;
 }
 
@@ -84,7 +118,7 @@ void IniFile::WriteInteger( const char* szSec, const char* szKey, int value )
 
 	char szBuf[COMMON_CHAR_BUF_64] = {0};
 	sprintf_s( szBuf, "%d", value );
-	if( strlen( szBuf ) > 0  )
+	if( strlen( szBuf ) > 0 )
 	{
 		WriteValue( szSec, szKey, szBuf );
 	}
@@ -111,45 +145,50 @@ void IniFile::WriteString( const char* szSec, const char* szKey, const char* val
 	WriteValue( szSec, szKey, value );
 }
 
-int IniFile::GetInteger( const char* szSec, const char* szKey )
+bool IniFile::GetBool( const char* szSec, const char* szKey, bool defValue )
 {
-	return 0;
-}
-
-float IniFile::GetFloat( const char* szSec, const char* szKey )
-{
-	return 0.f;
-}
-
-const char* IniFile::GetString( const char* szSec, const char* szKey )
-{
-	return NULL;
-}
-
-bool IniFile::Save()
-{
-	if( m_pFile == NULL || m_Lines.empty() )
-		return false;
-
-	fclose( m_pFile );
-	m_pFile = NULL;
-
-	errno_t noerr = fopen_s( &m_pFile, m_szFileName, "w+" );
-	if( m_pFile == NULL || noerr != 0 )
+	const char* szValue = GetValue( szSec, szKey );
+	if( szValue == NULL )
 	{
-		ErrorMsg( "m_pFile = NULL!" );
-		return false;
+		return defValue;
 	}
 
-	std::string strText = "";
-	for( LinesIter it = m_Lines.begin(); it != m_Lines.end(); ++it )
-	{
-		strText += it->content;
-	}
-	fwrite( strText.c_str(), strText.length(), 1, m_pFile );
-	fclose( m_pFile );
+	int value = atoi( szValue );
 
-	return true;
+	return value == 0 ? false : true;
+}
+
+int IniFile::GetInteger( const char* szSec, const char* szKey, int defValue )
+{
+	const char* szValue = GetValue( szSec, szKey );
+	if( szValue == NULL )
+	{
+		return defValue;
+	}
+
+	return atoi( szValue );
+}
+
+float IniFile::GetFloat( const char* szSec, const char* szKey, float defValue )
+{
+	const char* szValue = GetValue( szSec, szKey );
+	if( szValue == NULL )
+	{
+		return defValue;
+	}
+
+	return (float)atof( szValue );
+}
+
+const char* IniFile::GetString( const char* szSec, const char* szKey, std::string defValue )
+{
+	const char* szValue = GetValue( szSec, szKey );
+	if( szValue == NULL )
+	{
+		return defValue.c_str();
+	}
+
+	return szValue;
 }
 
 bool IniFile::IsNextLine( const char c )
@@ -157,11 +196,11 @@ bool IniFile::IsNextLine( const char c )
 	return ( c == '\n' || c == '\r' );
 }
 
-bool IniFile::IsEndOfFile()
+bool IniFile::IsEndOfFile( FILE* fp )
 {
-	if( m_pFile != NULL )
+	if( fp != NULL )
 	{
-		return ( feof(m_pFile) != ZERO || ferror( m_pFile ) != ZERO );
+		return ( feof(fp) != ZERO || ferror(fp) != ZERO );
 	}
 	return true;
 }
@@ -176,10 +215,18 @@ void IniFile::ParseLine( std::string strLine, int iLineIndex )
 	line.section = strSection;
 	line.lineIndex = iLineIndex;
 
-	Size_Type flagPos = strLine.find_first_of( '\n' );
-	if( flagPos != Npos )
+	std::string::size_type flagPos = strLine.find_first_of( '\r' );
+	if( flagPos != std::string::npos )
 	{
 		strLine.erase( flagPos );
+	}
+	else
+	{
+		flagPos = strLine.find_first_of( '\n' );
+		if( flagPos != std::string::npos )
+		{
+			strLine.erase( flagPos );
+		}
 	}
 
 	if( strLine.empty() )
@@ -189,11 +236,11 @@ void IniFile::ParseLine( std::string strLine, int iLineIndex )
 		return;
 	}
 
-	Size_Type leftBarce = strLine.find_first_of( '[' );
-	if( leftBarce != Npos )
+	std::string::size_type leftBarce = strLine.find_first_of( '[' );
+	if( leftBarce != std::string::npos )
 	{
-		Size_Type rightBarce = strLine.find_first_of( ']' );
-		if( rightBarce == Npos )
+		std::string::size_type rightBarce = strLine.find_first_of( ']' );
+		if( rightBarce == std::string::npos )
 		{
 			m_Lines.push_back( line );
 			return;
@@ -205,7 +252,7 @@ void IniFile::ParseLine( std::string strLine, int iLineIndex )
 	{
 		line.section = strSection;
 		flagPos = strLine.find_first_of( '=' );
-		if( flagPos == Npos )
+		if( flagPos == std::string::npos )
 		{
 			m_Lines.push_back( line );
 			return;
@@ -215,14 +262,13 @@ void IniFile::ParseLine( std::string strLine, int iLineIndex )
 		strLine.erase( ZERO, strLine.find_first_not_of( ' ' ) );
 		flagPos = strLine.find_first_of( '=' );
 
-		// 可以有注释每行 #为注释标示
 		std::string key;
 		Value _value;
 		_value.lineIndex = iLineIndex;
 
 		key		= strLine.substr( ZERO, flagPos );
-		Size_Type notePos =  strLine.find_first_of( '#' );
-		notePos != Npos ? _value.value = strLine.substr( flagPos + 1, notePos - flagPos - 1 ) : _value.value = strLine.substr( flagPos + 1 );
+		std::string::size_type notePos =  strLine.find_first_of( '#' );
+		notePos != std::string::npos ? _value.value = strLine.substr( flagPos + 1, notePos - flagPos - 1 ) : _value.value = strLine.substr( flagPos + 1 );
 
 		SectionIter it = m_Sections.find( strSection );
 		if( it != m_Sections.end() )
@@ -231,7 +277,6 @@ void IniFile::ParseLine( std::string strLine, int iLineIndex )
 			std::pair< std::map< std::string,Value >::iterator,bool > ret = keyValuse.insert( std::make_pair( key, _value ) );
 			if( !ret.second )
 			{
-				ErrorMsg( "Insert Key Failed, Key = %s", key.c_str() );
 			}
 		}
 		else
@@ -240,12 +285,10 @@ void IniFile::ParseLine( std::string strLine, int iLineIndex )
 			std::pair< std::map< std::string,Value >::iterator,bool > ret = keyValues.insert( std::make_pair( key, _value ) );
 			if( !ret.second )
 			{
-				ErrorMsg( "Insert Key Failed, Key = %s", key.c_str() );
 			}
 			std::pair< std::map< std::string, KeyValues >::iterator,bool > ret2 = m_Sections.insert( std::make_pair( strSection, keyValues ) );
 			if( !ret2.second )
 			{
-				ErrorMsg( "Insert section Failed, section = %s", strSection.c_str() );
 			}
 		}
 	}
@@ -254,7 +297,6 @@ void IniFile::ParseLine( std::string strLine, int iLineIndex )
 
 void IniFile::Reset()
 {
-	m_pFile = NULL;
 	m_Lines.clear();
 	m_Sections.clear();
 	memset( m_szFileName, 0, COMMON_CHAR_BUF_128 );
@@ -267,47 +309,72 @@ void IniFile::WriteValue( const char* szSec, const char* szKey, const char* valu
 		return;
 
 	Line line;
-	line.content;
 	line.content += szKey;
 	line.content += '=';
 	line.content += value;
-	line.content += '\n';
 	line.section = szSec;
 	line.writeadle= false;
+	size_t lineSize = m_Lines.size();
 
 	SectionIter it = m_Sections.find( szSec );
 	if( it != m_Sections.end() )
 	{
-		KeyValues& key = it->second;
-		KeyValueIter keyIter = key.find( szKey );
-		if( keyIter != key.end() )
+		KeyValues& keyValue = it->second;
+		KeyValueIter keyValueIter = keyValue.find( szKey );
+		if( keyValueIter != keyValue.end() )
 		{
-			const Value& _value = keyIter->second;
+			Value& _value = keyValueIter->second;
 			if( strcmp( _value.value.c_str(), value ) == ZERO )
+				return;
+
+			_value.value = value;
+			line.lineIndex = _value.lineIndex;
+			line.content += "\r\n";
+			if( line.lineIndex >= lineSize )
 			{
 				return;
 			}
-			line.lineIndex = _value.lineIndex;
-			m_Lines[_value.lineIndex] = line;
+			m_Lines[line.lineIndex] = line;
 		}
 		else
 		{
+			Value _value;
+			_value.value = value;
 			int iNoFindValue = 0;
 			int iValidLineIndex = GetValidLineIndex( szSec, iNoFindValue );
 			if( iValidLineIndex == INVALID_VALUE )
 			{
 				line.lineIndex = iNoFindValue;
+				if( line.lineIndex != lineSize )
+				{
+					line.content += "\r\n";
+				}
 				m_Lines.insert( m_Lines.begin()+iNoFindValue, line );
+				_value.lineIndex = iNoFindValue;
 			}
 			else
 			{
 				line.lineIndex = iValidLineIndex;
-				m_Lines[iValidLineIndex] = line;
+				line.content += "\r\n";
+
+				if( line.lineIndex >= lineSize )
+				{
+					return;
+				}
+				m_Lines[line.lineIndex] = line;
+				_value.lineIndex = iValidLineIndex;
 			}
+			keyValue[szKey] = _value;
 		}
+		m_Sections[szSec] = keyValue;
 	}
 	else
 	{
+		if( lineSize > ZERO )
+		{
+			m_Lines[lineSize-1].content += '\n';
+		}
+
 		Line lineSection;
 		lineSection.content;
 		lineSection.content += '[';
@@ -318,9 +385,31 @@ void IniFile::WriteValue( const char* szSec, const char* szKey, const char* valu
 		lineSection.writeadle= false;
 		lineSection.lineIndex = m_Lines.size();
 		m_Lines.push_back( lineSection );
+
 		line.lineIndex = lineSection.lineIndex+1;
 		m_Lines.push_back( line );
 	}
+}
+
+const char* IniFile::GetValue( const char* szSec, const char* szKey )
+{
+	SectionIter it = m_Sections.find( szSec );
+	if( it == m_Sections.end() )
+	{
+		return NULL;
+	}
+
+	const KeyValues& keyValue = it->second;
+	CKeyValueIter keyIter = keyValue.find( szKey );
+
+	if( keyIter == keyValue.end() )
+	{
+		return NULL;
+	}
+
+	const Value& _value = keyIter->second;
+
+	return _value.value.c_str();
 }
 
 

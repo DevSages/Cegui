@@ -1,6 +1,5 @@
 #include "GameGui.h"
 #include "PathMngr.h"
-#include "StringCVTools.h"
 #include "IniFile.h"
 #include <iostream>
 using namespace std;
@@ -17,12 +16,9 @@ m_GUISystem( NULL )
 
 bool GameGui::Init()
 {
-	IniFile ini( "Config.ini" );
-	ini.WriteInteger( "windows", "fsgg", 1000 );
-
 	GameWnd& wnd = GameWnd::GetWnd();
-	if( !wnd.InitWnd( 800, 600, false ) )
-		return false;
+	if( !wnd.Init() )
+		RETURN_FALSE;
 
 	DeviceWnd d_wnd;
 	ZeroMemory( &d_wnd, sizeof( DeviceWnd ) );
@@ -34,22 +30,22 @@ bool GameGui::Init()
 
 	m_Device = NULL;
 	if( !InitDevice( d_wnd, &m_Device ) || m_Device == NULL )
-		return false;
+		RETURN_FALSE;
 
 	wnd.ShowWindow();
 	wnd.AddInputHander( this );
 
 	m_Renderer = &Direct3D9Renderer::bootstrapSystem( m_Device->d_device );
 	if( !m_Renderer )
-		return false;
+		RETURN_FALSE;
 
 	if( ( m_GUISystem = CEGUI::System::getSingletonPtr() ) == NULL )
-		return false;
+		RETURN_FALSE;
 
 	InitialiseResourceGroupDirectories();
 	InitialiseDefaultResourceGroups();
 
-	return true;
+	RETURN_TRUE;
 }
 
 
@@ -72,12 +68,20 @@ void GameGui::HandleInput( UINT uMsg, WPARAM wParam, LPARAM lParam )
 
 	case WM_LBUTTONDOWN:
 		{
+			IniFile ini(DEF_CONFIG);
+			ini.WriteString( "gaoyin", "f", "3.141592654" );
+
+			float ssage = ini.GetFloat( "gaoyin", "lihuihui" );
+
+
 			System::getSingleton().injectMouseButtonDown(CEGUI::LeftButton);
 		}
 		break;
 
 	case WM_LBUTTONUP:
 		{
+
+
 			System::getSingleton().injectMouseButtonUp(CEGUI::LeftButton);
 		}
 		break;
@@ -152,21 +156,21 @@ void GameGui::InitialiseResourceGroupDirectories()
 	TCHAR resourcePath[PATH_MAX];
 
 	_stprintf_s(resourcePath, _TEXT("%s/%s"), szDataPathPrefix, _TEXT("schemes/"));
-	rp->setResourceGroupDirectory("schemes", UnicodeToANSI( resourcePath ));
+	rp->setResourceGroupDirectory("schemes", resourcePath);
 	_stprintf_s(resourcePath, _TEXT("%s/%s"), szDataPathPrefix, _TEXT("imagesets/"));
-	rp->setResourceGroupDirectory("imagesets", UnicodeToANSI( resourcePath ));
+	rp->setResourceGroupDirectory("imagesets", resourcePath);
 	_stprintf_s(resourcePath, _TEXT("%s/%s"), szDataPathPrefix, _TEXT("fonts/"));
-	rp->setResourceGroupDirectory("fonts", UnicodeToANSI( resourcePath ));
+	rp->setResourceGroupDirectory("fonts", resourcePath);
 	_stprintf_s(resourcePath, _TEXT("%s/%s"), szDataPathPrefix, _TEXT("layouts/"));
-	rp->setResourceGroupDirectory("layouts", UnicodeToANSI( resourcePath ));
+	rp->setResourceGroupDirectory("layouts", resourcePath);
 	_stprintf_s(resourcePath, _TEXT("%s/%s"), szDataPathPrefix, _TEXT("looknfeel/"));
-	rp->setResourceGroupDirectory("looknfeels", UnicodeToANSI( resourcePath ));
+	rp->setResourceGroupDirectory("looknfeels", resourcePath);
 	_stprintf_s(resourcePath, _TEXT("%s/%s"), szDataPathPrefix, _TEXT("lua_scripts/"));
-	rp->setResourceGroupDirectory("lua_scripts", UnicodeToANSI( resourcePath ));
+	rp->setResourceGroupDirectory("lua_scripts", resourcePath);
 	_stprintf_s(resourcePath, _TEXT("%s/%s"), szDataPathPrefix, _TEXT("xml_schemas/"));
-	rp->setResourceGroupDirectory("schemas", UnicodeToANSI( resourcePath ));
+	rp->setResourceGroupDirectory("schemas", resourcePath);
 	_stprintf_s(resourcePath, _TEXT("%s/%s"), szDataPathPrefix, _TEXT("animations/"));
-	rp->setResourceGroupDirectory("animations", UnicodeToANSI( resourcePath )); 
+	rp->setResourceGroupDirectory("animations", resourcePath); 
 }
 
 void GameGui::InitialiseDefaultResourceGroups()

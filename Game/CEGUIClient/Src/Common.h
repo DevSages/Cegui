@@ -2,6 +2,7 @@
 #define __H_COMMON_H__
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #ifndef PATH_MAX
 #   include <stdlib.h>
@@ -18,10 +19,20 @@
 #endif
 
 
-#if defined( WIN32 ) && defined( _DEBUG )
-	#ifndef _CONSOLE
-		#pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" )
+/*
+*	下面3个宏只用在判断函数不应该失败的情况下使用，其他不应该使用这几个宏。
+*/
+#if (defined( __WIN32__ ) || defined( _WIN32 )) && defined( _DEBUG )
+	#ifdef _CONSOLE
+		#define RETURN_FALSE	{ printf( "file: %s\nline: %d\nfunction: %s\nEND!\n", __FILE__, __LINE__, __FUNCTION__ ); system("pause"); return false; }
+		#define RETURN_TRUE		{ return true; }
+		#define RETURN_EMPTY	{ printf( "file: %s\nline: %d\nfunction: %s\nEND!\n", __FILE__, __LINE__, __FUNCTION__ ); system("pause");				}
 	#endif
+#else
+	#pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" )
+	#define RETURN_FALSE	{ return false;	}
+	#define RETURN_TRUE		{ return true;	}
+	#define RETURN_EMPTY	{				}
 #endif
 
 

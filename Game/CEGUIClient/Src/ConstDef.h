@@ -13,4 +13,9 @@ const int COMMON_CHAR_BUF_512	=	512;
 
 
 
+#define  DEF_CONFIG		"Config.ini"
+
+
+
+
 #endif // __H_CONSTDEF_H__

@@ -20,7 +20,7 @@ public:
 
 	void					AddInputHander( Input* pInputHandler );
 
-	bool					InitWnd( UINT uWidth, UINT uHeight, bool bFullScreen = false );
+	bool					Init();
 
 	void					ShowWindow();
 

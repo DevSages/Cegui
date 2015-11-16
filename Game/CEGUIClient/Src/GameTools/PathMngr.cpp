@@ -1,5 +1,4 @@
 #include "PathMngr.h"
-#include "ErrorMsg.h"
 #include <Windows.h>
 
 
@@ -28,7 +27,6 @@ const TCHAR* PathMngr::GetExePath()
 	DWORD dwLen = GetModuleFileName( NULL, m_szExePath, PATH_MAX );
 	if( 0 == dwLen )
 	{
-		ErrorMsg( "GetExePath()Failed!-ErrorCode = %d", GetLastError() );
 		return NULL;
 	}
 	TCHAR* szFirstAddr = NULL;
@@ -41,6 +39,7 @@ const TCHAR* PathMngr::GetExePath()
 	{
 		return NULL;
 	}
+
 	return m_szExePath;
 }
 

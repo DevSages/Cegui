@@ -37,17 +37,23 @@
     <ClInclude Include="Src\ConstDef.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="Src\GameTools\ErrorMsg.h">
-      <Filter>GameTools</Filter>
-    </ClInclude>
     <ClInclude Include="Src\GameTools\PathMngr.h">
-      <Filter>GameTools</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\GameTools\StringCVTools.h">
       <Filter>GameTools</Filter>
     </ClInclude>
     <ClInclude Include="Src\FileSystem\IniFile.h">
       <Filter>FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FileSystem\IniFileHandler.h">
+      <Filter>FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\GameTools\StringTools.h">
+      <Filter>GameTools</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FileSystem\FileHandler.h">
+      <Filter>FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\GameTools\LogSystem.h">
+      <Filter>GameTools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -66,14 +72,20 @@
     <ClCompile Include="Src\GameTools\PathMngr.cpp">
       <Filter>GameTools</Filter>
     </ClCompile>
-    <ClCompile Include="Src\GameTools\ErrorMsg.cpp">
-      <Filter>GameTools</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\GameTools\StringCVTools.cpp">
-      <Filter>GameTools</Filter>
-    </ClCompile>
     <ClCompile Include="Src\FileSystem\IniFile.cpp">
       <Filter>FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FileSystem\IniFileHandler.cpp">
+      <Filter>FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\GameTools\StringTools.cpp">
+      <Filter>GameTools</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FileSystem\FileHandler.cpp">
+      <Filter>FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\GameTools\LogSystem.cpp">
+      <Filter>GameTools</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
