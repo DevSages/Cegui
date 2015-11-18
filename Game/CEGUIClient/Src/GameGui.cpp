@@ -18,7 +18,7 @@ bool GameGui::Init()
 {
 	GameWnd& wnd = GameWnd::GetWnd();
 	if( !wnd.Init() )
-		RETURN_FALSE;
+		return false;
 
 	DeviceWnd d_wnd;
 	ZeroMemory( &d_wnd, sizeof( DeviceWnd ) );
@@ -26,26 +26,26 @@ bool GameGui::Init()
 	d_wnd.d_width = wnd.m_Width;
 	d_wnd.d_height = wnd.m_Height;
 	d_wnd.d_hwnd = wnd.m_Hwnd;
-	d_wnd.d_hinst = wnd.m_Hinst;
+	d_wnd.d_hinst = wnd.m_Hinstance;
 
 	m_Device = NULL;
 	if( !InitDevice( d_wnd, &m_Device ) || m_Device == NULL )
-		RETURN_FALSE;
+		return false;
 
 	wnd.ShowWindow();
 	wnd.AddInputHander( this );
 
 	m_Renderer = &Direct3D9Renderer::bootstrapSystem( m_Device->d_device );
 	if( !m_Renderer )
-		RETURN_FALSE;
+		return false;
 
 	if( ( m_GUISystem = CEGUI::System::getSingletonPtr() ) == NULL )
-		RETURN_FALSE;
+		return false;
 
 	InitialiseResourceGroupDirectories();
 	InitialiseDefaultResourceGroups();
 
-	RETURN_TRUE;
+	return true;
 }
 
 
@@ -68,12 +68,6 @@ void GameGui::HandleInput( UINT uMsg, WPARAM wParam, LPARAM lParam )
 
 	case WM_LBUTTONDOWN:
 		{
-			IniFile ini(DEF_CONFIG);
-			ini.WriteString( "gaoyin", "f", "3.141592654" );
-
-			float ssage = ini.GetFloat( "gaoyin", "lihuihui" );
-
-
 			System::getSingleton().injectMouseButtonDown(CEGUI::LeftButton);
 		}
 		break;
@@ -134,7 +128,7 @@ void GameGui::Render( float timeDelta )
 	if( m_GUISystem != NULL )
 	{
 		m_GUISystem->injectTimePulse( timeDelta );
-		if( !checkDeviceLost() )
+		if( !CheckDeviceLost() )
 		{
 			m_GUISystem->renderGUI();
 		}
@@ -191,7 +185,7 @@ void GameGui::InitialiseDefaultResourceGroups()
 }
 
 
-bool GameGui::checkDeviceLost()
+bool GameGui::CheckDeviceLost()
 {
 	HRESULT coop = m_Device->d_device->TestCooperativeLevel();
 

@@ -87,24 +87,26 @@
     <ClInclude Include="Src\ConstDef.h" />
     <ClInclude Include="Src\FileSystem\FileHandler.h" />
     <ClInclude Include="Src\FileSystem\IniFile.h" />
-    <ClInclude Include="Src\FileSystem\IniFileHandler.h" />
+    <ClInclude Include="Src\FileSystem\TableFile.h" />
     <ClInclude Include="Src\Game.h" />
     <ClInclude Include="Src\GameGui.h" />
     <ClInclude Include="Src\GameTools\LogSystem.h" />
     <ClInclude Include="Src\GameTools\PathMngr.h" />
     <ClInclude Include="Src\GameTools\StringTools.h" />
+    <ClInclude Include="Src\GameTools\Thread.h" />
     <ClInclude Include="Src\GameWnd.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\FileSystem\FileHandler.cpp" />
     <ClCompile Include="Src\FileSystem\IniFile.cpp" />
-    <ClCompile Include="Src\FileSystem\IniFileHandler.cpp" />
+    <ClCompile Include="Src\FileSystem\TableFile.cpp" />
     <ClCompile Include="Src\Game.cpp" />
     <ClCompile Include="Src\GameGui.cpp" />
     <ClCompile Include="Src\GameEntry.cpp" />
     <ClCompile Include="Src\GameTools\LogSystem.cpp" />
     <ClCompile Include="Src\GameTools\PathMngr.cpp" />
     <ClCompile Include="Src\GameTools\StringTools.cpp" />
+    <ClCompile Include="Src\GameTools\Thread.cpp" />
     <ClCompile Include="Src\GameWnd.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

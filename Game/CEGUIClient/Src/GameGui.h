@@ -29,7 +29,7 @@ protected:
 
 	void				InitialiseDefaultResourceGroups();
 
-	bool				checkDeviceLost();
+	bool				CheckDeviceLost();
 
 private:
 	PDirect3DDevice		m_Device;

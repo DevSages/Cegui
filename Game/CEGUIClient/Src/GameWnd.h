@@ -16,11 +16,17 @@ public:
 class GameWnd
 {
 public:
+	HWND					m_Hwnd;
+	HINSTANCE				m_Hinstance;
+	UINT					m_Width;
+	UINT					m_Height;
+	bool					m_bFullScreen;
+public:
 	static GameWnd&			GetWnd();
 
-	void					AddInputHander( Input* pInputHandler );
-
 	bool					Init();
+
+	void					AddInputHander( Input* pInputHandler );
 
 	void					ShowWindow();
 
@@ -31,7 +37,7 @@ public:
 private:
 	static LRESULT CALLBACK WndProc( HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
 	
-	GameWnd():m_Hwnd( NULL ),m_Hinst( NULL ),m_Width( 0 ),m_Height( 0 ),m_bFullScreen( false )
+	GameWnd():m_Hwnd( NULL ),m_Hinstance( NULL ),m_Width( 0 ),m_Height( 0 ),m_bFullScreen( false )
 	{
 		
 	}
@@ -40,13 +46,6 @@ private:
 	{
 
 	}
-
-public:
-	HWND					m_Hwnd;
-	HINSTANCE				m_Hinst;
-	UINT					m_Width;
-	UINT					m_Height;
-	bool					m_bFullScreen;
 
 protected:
 	typedef std::set< Input* > Input_Handelers;

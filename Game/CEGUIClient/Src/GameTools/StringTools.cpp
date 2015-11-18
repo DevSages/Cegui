@@ -30,3 +30,24 @@ void StringTools::RemoveRN( string& strString )
 		}
 	}
 }
+
+bool StringTools::Format( string& strString, const char* szFormat, ... )
+{
+	if( !strString.empty() )
+		strString.clear();
+
+	va_list argptr = NULL;
+	va_start(argptr, szFormat);
+	int bufsize = _vscprintf(szFormat, argptr) + 2;
+	char* szBuf = new char[bufsize];
+	vsprintf_s( szBuf, bufsize, szFormat, argptr);
+	strString = szBuf;
+	va_end(argptr);
+
+	delete[] szBuf;
+
+	if( strString.empty() )
+		return false;
+
+	return true;
+}

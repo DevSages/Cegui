@@ -1,6 +1,7 @@
 #include "GameWnd.h"
 #include "IniFile.h"
 #include <tchar.h>
+#include "PathMngr.h"
 
 LPCTSTR szClassName = _TEXT( "GAME" );
 
@@ -22,7 +23,13 @@ void GameWnd::AddInputHander( Input* pInputHandler )
 
 bool GameWnd::Init()
 {
-	IniFile config( DEF_CONFIG );
+	std::string strConfigPath;
+	StringTools::Format( strConfigPath, "%s/%s",  PathMngr::GetSingleton().GetExePath(), DEF_CONFIG_FILE );
+
+	IniFile config;
+	if( !config.LoadFile( strConfigPath.c_str() ) )
+		return false;
+
 	int width = config.GetInteger( "window", "width" );
 	int height = config.GetInteger( "window", "height" );
 	bool bFullScreen = config.GetBool( "window", "bFullScreen" );
@@ -56,7 +63,7 @@ bool GameWnd::Init()
 		return false;
 
 	m_Hwnd	= hwnd;
-	m_Hinst = wc.hInstance;
+	m_Hinstance = wc.hInstance;
 	m_Width = width;
 	m_Height = height;
 	m_bFullScreen = bFullScreen;
@@ -77,7 +84,7 @@ void GameWnd::HideWindow()
 
 void GameWnd::DestroyWnd()
 {
-	UnregisterClass( szClassName, m_Hinst );
+	UnregisterClass( szClassName, m_Hinstance );
 }
 
 LRESULT CALLBACK GameWnd::WndProc( HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam )

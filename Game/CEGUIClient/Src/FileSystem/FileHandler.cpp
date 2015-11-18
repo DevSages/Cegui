@@ -18,12 +18,12 @@ FileHandler::~FileHandler()
 bool FileHandler::OpenFile( const char* szFileName, const char* szOpenFlag )
 {
 	if( szFileName == NULL )
-		RETURN_FALSE;
+		return false;
 	errno_t errorCode = fopen_s( &m_pFile, szFileName, szOpenFlag );
 	if( m_pFile == NULL || errorCode != 0 )
-		RETURN_FALSE;
+		return false;
 
-	RETURN_TRUE;
+	return true;
 }
 
 void FileHandler::Close()
@@ -39,17 +39,20 @@ void FileHandler::Close()
 void FileHandler::WriteFile( const char* szStrem, size_t size )
 {
 	if( m_pFile == NULL || szStrem == NULL || size == 0 )
-		RETURN_EMPTY;
+		return;
+
 	size_t _size = fwrite( szStrem, size, 1, m_pFile );
-	if( size != _size )
-		RETURN_EMPTY;
+
+	if( _size != 1 )
+		return;
+
 	fflush( m_pFile );
 }
 
 long FileHandler::GetFileSize()
 {
 	if( m_pFile == NULL )
-		RETURN_FALSE;
+		return false;
 
 	MoveEnd();
 	long size = ftell( m_pFile );
@@ -59,11 +62,17 @@ long FileHandler::GetFileSize()
 
 void FileHandler::MoveBegin()
 {
+	if( m_pFile == NULL )
+		return;
+
 	fseek( m_pFile, 0, SEEK_SET );
 }
 
 void FileHandler::MoveEnd()
 {
+	if( m_pFile == NULL )
+		return;
+
 	fseek( m_pFile, 0, SEEK_END );
 }
 
@@ -71,7 +80,7 @@ bool FileHandler::GetLineContent( LINES& vContents )
 {
 	size_t fileSize = 0;
 	if( !ValidFileSize( fileSize ) )
-		RETURN_FALSE;
+		return false;
 
 	if( !vContents.empty() )
 	{
@@ -96,9 +105,9 @@ bool FileHandler::GetLineContent( LINES& vContents )
 	}
 
 	if( vContents.empty() )
-		RETURN_FALSE;
+		return false;
 
-	RETURN_TRUE;
+	return true;
 }
 
 string FileHandler::GetLineContent( size_t uLineIndex  )
@@ -129,7 +138,7 @@ bool FileHandler::GetContent( string& content )
 {
 	size_t fileSize = 0;
 	if( !ValidFileSize( fileSize ) )
-		RETURN_FALSE;
+		return false;
 
 	char* szStream = new char[fileSize];
 	fread( szStream, fileSize, 1, m_pFile );
@@ -140,22 +149,22 @@ bool FileHandler::GetContent( string& content )
 	if( strSize < fileSize )
 	{
 		content.clear();
-		RETURN_FALSE;
+		return false;
 	}
 
-	RETURN_TRUE;
+	return true;
 }
 
 bool FileHandler::ValidFileSize( size_t& uFileSize )
 {
 	long fileSize = GetFileSize();
-	if( fileSize == -1 || fileSize == 0 )
+	if( fileSize == -1 )
 	{
 		uFileSize = 0;
-		RETURN_FALSE;
+		return false;
 	}
 	uFileSize = fileSize;
-	RETURN_TRUE;
+	return true;
 }
 
 
