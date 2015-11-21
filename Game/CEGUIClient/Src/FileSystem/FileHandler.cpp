@@ -20,7 +20,7 @@ bool FileHandler::OpenFile( const char* szFileName, const char* szOpenFlag )
 	if( szFileName == NULL )
 		return false;
 	errno_t errorCode = fopen_s( &m_pFile, szFileName, szOpenFlag );
-	if( m_pFile == NULL || errorCode != 0 )
+	if( m_pFile == NULL || errorCode != errno )
 		return false;
 
 	return true;

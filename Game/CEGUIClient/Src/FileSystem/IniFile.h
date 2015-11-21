@@ -23,7 +23,7 @@ public:
 public:
 	void				Insert( const char* szSec, const char* szContent );
 
-	void				Destroy();
+	void				Clear();
 
 	Section*			GetSection( const char* szSec );
 

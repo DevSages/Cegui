@@ -2,6 +2,7 @@
 #include "PathMngr.h"
 #include "IniFile.h"
 #include <iostream>
+#include "LogSystem.h"
 using namespace std;
 
 
@@ -74,8 +75,6 @@ void GameGui::HandleInput( UINT uMsg, WPARAM wParam, LPARAM lParam )
 
 	case WM_LBUTTONUP:
 		{
-
-
 			System::getSingleton().injectMouseButtonUp(CEGUI::LeftButton);
 		}
 		break;

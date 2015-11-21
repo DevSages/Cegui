@@ -1,5 +1,6 @@
 #include "IniFile.h"
 #include <assert.h>
+#include "LogSystem.h"
 
 string IniFile::m_InvalidSection = "INVALID_SECTION";
 
@@ -53,7 +54,7 @@ void SectionHandler::Insert( const char* szSec, const char* szContent )
 	}
 }
 
-void SectionHandler::Destroy()
+void SectionHandler::Clear()
 {
 	Section* pSection = m_pHeadSection;
 	Section* pDelete = NULL;
@@ -99,7 +100,7 @@ IniFile::IniFile():
 IniFile::~IniFile()
 {
 	m_Sections.clear();
-	m_SectionHandler.Destroy();
+	m_SectionHandler.Clear();
 	m_bReady = false;
 }
 
@@ -108,14 +109,21 @@ bool IniFile::LoadFile( const char* szFileName )
 {
 	FileHandler fileHander;
 	m_bReady =  fileHander.OpenFile( szFileName );
+
 	if( !m_bReady )
+	{
+		Log_error( "LoadFile Error: %s", szFileName );
 		return false;
+	}
 
 	strncpy_s( m_FileName, szFileName, PATH_MAX );
 
 	LINES vLines;
 	if( !fileHander.GetLineContent( vLines ) )
+	{
+		Log_error( "Invalid File Size!" );
 		return false;
+	}
 
 	for( size_t i = 0; i < vLines.size(); i++ )
 	{
@@ -130,7 +138,10 @@ void IniFile::SaveFile()
 {
 	FileHandler fileHander;
 	if( !fileHander.OpenFile( m_FileName, "wb" ) )
+	{
+		Log_error( "LoadFile Error: %s", m_FileName );
 		return;
+	}
 
 	std::string strContens;
 	SectionHandler::Section* pSection = m_SectionHandler.GetHeadSection();
@@ -153,6 +164,7 @@ bool IniFile::ParseLine( string& strLine, int iLineNum )
 {
 	if( strLine.empty() )
 		return false;
+
 	static string strCurSection = m_InvalidSection;
 
 	string strLineTmp( strLine );
@@ -290,7 +302,10 @@ const char* IniFile::GetString( const char* szSec, const char* szKey, std::strin
 void IniFile::WriteValue( const char* szSec, const char* szKey, const char* szValue )
 {
 	if( szSec == NULL || szKey == NULL || szValue == NULL || !m_bReady )
+	{
+		Log_error( "bReady = false!" );
 		return;
+	}
 
 	SectionIter sectionIter = m_Sections.find( szSec );
 
@@ -381,7 +396,10 @@ void IniFile::WriteValue( const char* szSec, const char* szKey, const char* szVa
 const char* IniFile::GetValue( const char* szSec, const char* szKey )
 {
 	if( szSec == NULL || szKey == NULL && !m_bReady )
+	{
+		Log_error( "bReady = false!" );
 		return NULL;
+	}
 
 	SectionIter it = m_Sections.find( szSec );
 	if( it == m_Sections.end() )

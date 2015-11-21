@@ -15,6 +15,7 @@ public:
 	~Mutex()
 	{
 		CloseHandle( m_Mutex);
+		m_Mutex = NULL;
 	}
 public:
 	int				Lock();

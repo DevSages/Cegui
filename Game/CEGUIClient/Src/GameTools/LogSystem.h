@@ -8,30 +8,33 @@
 class LOG
 {
 public:
-	enum LogType
+	enum LOG_TYPE
 	{
-		LOG_TYPE_FILE,
-		LOG_TYPE_CONSOLE,
-	};
-
-	enum ErrorLv
-	{
-		ERROR_LV_COMMON,
-		ERROR_LV_WARNING,
-		ERROR_LV_ERROR,
+		eLOG_TYPE_COMMON = 0,
+		eLOG_TYPE_WARNING,
+		eLOG_TYPE_ERROR,
 	};
 public:
-	LOG( const char* szFileName )
-	{
-		strncpy_s( m_LogFileName, szFileName, PATH_MAX );
-	}
+	LOG();
 
-	virtual void WriteLog( const char* szFormat, ... ) = 0;
+	void			WriteLog( int logType, const char* szDebugFileName, unsigned LineNum, const char* szFormat, ... );
 
 private:
-	Mutex		m_Mutex;
-	char		m_LogFileName[PATH_MAX];
+	Mutex			m_MutexTime;
+	Mutex			m_MutexFile;
+	static char		m_FileDirectory[PATH_MAX];
 };
+
+extern LOG		g_Log;
+
+#define Log_common( format, ... ) \
+	g_Log.WriteLog( LOG::eLOG_TYPE_COMMON, __FILE__, __LINE__, format, ##__VA_ARGS__ )
+
+#define Log_error( format, ... ) \
+	g_Log.WriteLog( LOG::eLOG_TYPE_ERROR, __FILE__, __LINE__, format, ##__VA_ARGS__ )
+
+#define Log_warning( format, ... ) \
+	g_Log.WriteLog( LOG::eLOG_TYPE_WARNING, __FILE__, __LINE__, format, ##__VA_ARGS__ )
 
 
 
