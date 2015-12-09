@@ -1,9 +1,16 @@
 #include "Game.h"
 
 
+Game theGame;
+
+
+
 bool Game::Init()
 {
 	if( !m_Gui.Init() )
+		return false;
+
+	if( !m_Logic.Init() )
 		return false;
 
 	return true;
@@ -39,16 +46,33 @@ void Game::Run()
 
 void Game::Release()
 {
-	
+	m_Gui.Release();
+	m_Logic.Release();
 }
 
 
 void Game::DoTick( float timeDelta )
 {
 	m_Gui.DoTick( timeDelta );
+	m_Logic.DoTick( timeDelta );
 }
 
-void Game::HandleInput( UINT uMsg, WPARAM wParam, LPARAM lParam )
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+//								main function								  //
+////////////////////////////////////////////////////////////////////////////////
+int main( int argc, char** argv )
 {
-	
+	if( !theGame.Init() )
+		return INVALID_VALUE;
+
+	theGame.Run();
+
+	theGame.Release();
+
+	return VALID_VALUE;
 }

@@ -29,7 +29,7 @@ void LOG::WriteLog( int logType, const char* szDebugFileName, unsigned LineNum, 
 	time_t timeInfo = time( NULL );
 	errno_t error = localtime_s( &_tm, &timeInfo );
 
-	if( errno != error )
+	if( 0 != error )
 		return;
 
 	static int _day = -1;

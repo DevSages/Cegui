@@ -1,8 +1,9 @@
 #ifndef __H__GAME_H__
 #define __H__GAME_H__
 #include "GameGui.h"
+#include "GameLogic.h"
 
-class Game : public Input
+class Game
 {
 public:
 	bool			Init();
@@ -13,11 +14,10 @@ public:
 
 private:
 	void			DoTick( float timeDelta );
-	
-	virtual void	HandleInput( UINT uMsg, WPARAM wParam, LPARAM lParam );
 
 private:
 	GameGui			m_Gui;
+	GameLogic		m_Logic;
 };
 
 

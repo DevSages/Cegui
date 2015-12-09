@@ -20,7 +20,7 @@ bool FileHandler::OpenFile( const char* szFileName, const char* szOpenFlag )
 	if( szFileName == NULL )
 		return false;
 	errno_t errorCode = fopen_s( &m_pFile, szFileName, szOpenFlag );
-	if( m_pFile == NULL || errorCode != errno )
+	if( m_pFile == NULL || errorCode != ZERO )
 		return false;
 
 	return true;
@@ -38,7 +38,7 @@ void FileHandler::Close()
 
 void FileHandler::WriteFile( const char* szStrem, size_t size )
 {
-	if( m_pFile == NULL || szStrem == NULL || size == 0 )
+	if( m_pFile == NULL || szStrem == NULL || size == ZERO )
 		return;
 
 	size_t _size = fwrite( szStrem, size, 1, m_pFile );
@@ -65,7 +65,7 @@ void FileHandler::MoveBegin()
 	if( m_pFile == NULL )
 		return;
 
-	fseek( m_pFile, 0, SEEK_SET );
+	fseek( m_pFile, ZERO, SEEK_SET );
 }
 
 void FileHandler::MoveEnd()
@@ -73,12 +73,12 @@ void FileHandler::MoveEnd()
 	if( m_pFile == NULL )
 		return;
 
-	fseek( m_pFile, 0, SEEK_END );
+	fseek( m_pFile, ZERO, SEEK_END );
 }
 
 bool FileHandler::GetLineContent( LINES& vContents )
 {
-	size_t fileSize = 0;
+	size_t fileSize = ZERO;
 	if( !ValidFileSize( fileSize ) )
 		return false;
 
@@ -112,7 +112,7 @@ bool FileHandler::GetLineContent( LINES& vContents )
 
 string FileHandler::GetLineContent( size_t uLineIndex  )
 {
-	size_t lineIndex = 0;
+	size_t lineIndex = ZERO;
 	char szLineBuf[COMMON_CHAR_BUF_128];
 	while( !IsEndOfFile() )
 	{
@@ -136,7 +136,7 @@ string FileHandler::GetLineContent( size_t uLineIndex  )
 
 bool FileHandler::GetContent( string& content )
 {
-	size_t fileSize = 0;
+	size_t fileSize = ZERO;
 	if( !ValidFileSize( fileSize ) )
 		return false;
 
@@ -160,7 +160,7 @@ bool FileHandler::ValidFileSize( size_t& uFileSize )
 	long fileSize = GetFileSize();
 	if( fileSize == -1 )
 	{
-		uFileSize = 0;
+		uFileSize = ZERO;
 		return false;
 	}
 	uFileSize = fileSize;

@@ -5,14 +5,8 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Common">
-      <UniqueIdentifier>{ba35df8e-4beb-44e1-874e-9c569bea365e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Client">
       <UniqueIdentifier>{a0234fd2-81cc-4ad4-9ad4-5170129a183c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GuiSystem">
-      <UniqueIdentifier>{8ecac477-e29e-466a-a075-af6840645ed6}</UniqueIdentifier>
     </Filter>
     <Filter Include="GameTools">
       <UniqueIdentifier>{60c24d76-6d49-4987-939f-cf74e2ba5bee}</UniqueIdentifier>
@@ -20,22 +14,16 @@
     <Filter Include="FileSystem">
       <UniqueIdentifier>{d7d41fce-4ec4-4449-92f9-6c999ee8dac9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameLogic">
+      <UniqueIdentifier>{14d560ca-8e70-4bca-b2ad-cee3d98215f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameGUI">
+      <UniqueIdentifier>{d78a74a3-b256-4ba6-8180-29b2bd00b33f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Src\Common.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Game.h">
       <Filter>Client</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\GameWnd.h">
-      <Filter>GuiSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\GameGui.h">
-      <Filter>GuiSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\ConstDef.h">
-      <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="Src\GameTools\PathMngr.h">
       <Filter>GameTools</Filter>
@@ -58,18 +46,27 @@
     <ClInclude Include="Src\FileSystem\TableFile.h">
       <Filter>FileSystem</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Common.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ConstDef.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\GameLogic\ResourceMngr.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\GameWnd.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\GameGUI\GameGui.h">
+      <Filter>GameGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\GameLogic\GameLogic.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Game.cpp">
-      <Filter>Client</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\GameWnd.cpp">
-      <Filter>GuiSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\GameGui.cpp">
-      <Filter>GuiSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\GameEntry.cpp">
       <Filter>Client</Filter>
     </ClCompile>
     <ClCompile Include="Src\GameTools\PathMngr.cpp">
@@ -92,6 +89,18 @@
     </ClCompile>
     <ClCompile Include="Src\FileSystem\TableFile.cpp">
       <Filter>FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\GameLogic\ResourceMngr.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\GameWnd.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\GameGUI\GameGui.cpp">
+      <Filter>GameGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\GameLogic\GameLogic.cpp">
+      <Filter>GameLogic</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

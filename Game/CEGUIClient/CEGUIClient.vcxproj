@@ -54,7 +54,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../CEGUIBase/include;../CEGUIBase/include/RendererModules;.\Src\GameTools;.\Src;.\Src\FileSystem;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../CEGUIBase/include;../CEGUIBase/include/RendererModules;.\Src\GameTools;.\Src;.\Src\FileSystem;.\Src\GameLogic;.\Src\GameGUI;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -89,7 +89,9 @@
     <ClInclude Include="Src\FileSystem\IniFile.h" />
     <ClInclude Include="Src\FileSystem\TableFile.h" />
     <ClInclude Include="Src\Game.h" />
-    <ClInclude Include="Src\GameGui.h" />
+    <ClInclude Include="Src\GameGUI\GameGui.h" />
+    <ClInclude Include="Src\GameLogic\GameLogic.h" />
+    <ClInclude Include="Src\GameLogic\ResourceMngr.h" />
     <ClInclude Include="Src\GameTools\LogSystem.h" />
     <ClInclude Include="Src\GameTools\PathMngr.h" />
     <ClInclude Include="Src\GameTools\StringTools.h" />
@@ -101,8 +103,9 @@
     <ClCompile Include="Src\FileSystem\IniFile.cpp" />
     <ClCompile Include="Src\FileSystem\TableFile.cpp" />
     <ClCompile Include="Src\Game.cpp" />
-    <ClCompile Include="Src\GameGui.cpp" />
-    <ClCompile Include="Src\GameEntry.cpp" />
+    <ClCompile Include="Src\GameGUI\GameGui.cpp" />
+    <ClCompile Include="Src\GameLogic\GameLogic.cpp" />
+    <ClCompile Include="Src\GameLogic\ResourceMngr.cpp" />
     <ClCompile Include="Src\GameTools\LogSystem.cpp" />
     <ClCompile Include="Src\GameTools\PathMngr.cpp" />
     <ClCompile Include="Src\GameTools\StringTools.cpp" />

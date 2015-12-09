@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
 #ifndef PATH_MAX
 #   include <stdlib.h>
